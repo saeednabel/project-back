@@ -6,9 +6,12 @@ const app = require('./app');
 dotenv.config({ path: `${__dirname}/config.env` });
 
 
-mongoose.connect(process.env.DB_LINK)
+mongoose.connect(process.env.DB_LINK, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+})
 .then(() => console.log(`Connection Success`))
-.catch(() => console.log('Connection Failed'));
+.catch((err) => console.log(err));
 
 const port = process.env.PORT
 
